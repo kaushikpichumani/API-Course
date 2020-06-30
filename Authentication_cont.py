@@ -4,7 +4,7 @@ Created on Thu Jun 18 20:02:21 2020
 
 @author: PKALYAN
 """
-
+import os
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -14,7 +14,7 @@ from resources.user import UserRegister
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data1.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data1.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'jose'
 api = Api(app)
